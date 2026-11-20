@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pepepelos Barber Shop | Cortes y Servicios en Neza</title>
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --surface: #12151c;
+      --card: #181c26;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #ef4444;
+      --accent-hover: #f87171;
+      --border: rgba(248, 113, 113, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      background: rgba(11, 13, 18, 0.94);
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.4px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.96rem;
+      text-decoration: none;
+      text-align: center;
+      transition: 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+    }
+
+    .hero {
+      padding: 52px 0 40px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--accent-hover);
+      background: rgba(239, 68, 68, 0.14);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(1.95rem, 4.5vw, 2.95rem);
+      line-height: 1.12;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.04rem;
+      margin-bottom: 24px;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .hero-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      color: var(--accent-hover);
+    }
+
+    .quick-item {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.95rem;
+    }
+
+    .quick-item:last-child {
+      border-bottom: none;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .price {
+      font-size: 1.32rem;
+      font-weight: 800;
+      color: var(--accent-hover);
+    }
+
+    /* BOOKING SYSTEM */
+    .booking-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+    }
+
+    .booking-step {
+      margin-bottom: 22px;
+    }
+
+    .booking-label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      color: var(--accent-hover);
+    }
+
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    .day-btn,
+    .time-btn,
+    .service-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      cursor: pointer;
+      font-family: inherit;
+      transition: 0.18s ease;
+    }
+
+    .day-btn:hover,
+    .time-btn:hover,
+    .service-btn:hover {
+      border-color: var(--accent);
+    }
+
+    .day-btn.active,
+    .time-btn.active,
+    .service-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      font-weight: 800;
+    }
+
+    .day-btn span {
+      display: block;
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+
+    .day-btn strong {
+      display: block;
+      font-size: 0.96rem;
+      margin-top: 2px;
+    }
+
+    .times-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+      gap: 10px;
+    }
+
+    .time-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      text-decoration: line-through;
+    }
+
+    .services-select-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .client-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.96rem;
+      font-family: inherit;
+    }
+
+    .client-input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .booking-summary {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .booking-summary strong {
+      color: var(--text);
+    }
+
+    .loyalty-box {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(24, 28, 38, 0.96));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .stamps-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .stamp {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px dashed var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      background: rgba(239, 68, 68, 0.1);
+    }
+
+    .stamp.free {
+      background: var(--accent);
+      color: #ffffff;
+      border-style: solid;
+      width: auto;
+      padding: 0 12px;
+      border-radius: 999px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .cta-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-size: 1.55rem;
+      margin-bottom: 10px;
+    }
+
+    .cta-banner p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 26px 0 38px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 820px) {
+      .hero,
+      .grid-3,
+      .info-grid,
+      .services-select-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .days-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero {
+        padding-top: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a href="#" class="brand">PEPEPELOS <span>BARBER SHOP</span></a>
+      <a href="#agendar" class="btn btn-primary">Agendar cita</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container">
+      <div>
+        <div class="badge">Abierto todos los días • 10:00 a. m. a 9:00 p. m.</div>
+        <h1>Cortes limpios y estilo al tiro en Pepepelos Barber Shop</h1>
+        <p>
+          Cortes y servicios de barbería desde <strong>$120 hasta $200 MXN</strong>, en <strong>Av. México 254, Las Fuentes, Cdad. Nezahualcóyotl</strong>.
+        </p>
+        <div class="cta-group">
+          <a href="#agendar" class="btn btn-primary">Elegir día y hora</a>
+          <a href="#servicios" class="btn btn-secondary">Ver cortes y precios</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h2>Datos rápidos del local</h2>
+        <div class="quick-item"><strong>Precios de corte:</strong> $120 a $200 MXN</div>
+        <div class="quick-item"><strong>Horario:</strong> 10:00 a. m. – 9:00 p. m.</div>
+        <div class="quick-item"><strong>Ubicación:</strong> Av. México 254, Las Fuentes, 57600 Cdad. Nezahualcóyotl, Méx.</div>
+        <div class="quick-item"><strong>WhatsApp:</strong> 55 4016 0398</div>
+        <div class="quick-item"><strong>Beneficio:</strong> Sello en cada visita • 7.ª visita corte gratis</div>
+      </aside>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="servicios" class="container">
+      <h2 class="section-title">Servicios y precios</h2>
+      <p class="section-sub">Cortes de $120 a $200 MXN según el estilo, arreglo de barba o servicio completo que elijas.</p>
+
+      <div class="grid-3">
+        <article class="card">
+          <div>
+            <h3>Corte clásico o degradado (Fade)</h3>
+            <p class="section-sub" style="margin-top: 8px; margin-bottom: 0;">
+              Corte a máquina y tijera, contornos limpios y acabado final.
+            </p>
+          </div>
+          <div class="price">Desde $120 MXN</div>
+        </article>
+
+        <article class="card">
+          <div>
+            <h3>Corte + arreglo de barba</h3>
+            <p class="section-sub" style="margin-top: 8px; margin-bottom: 0;">
+              Corte completo más perfilado, rebaje y cuidado de barba.
+            </p>
+          </div>
+          <div class="price">$160 MXN</div>
+        </article>
+
+        <article class="card">
+          <div>
+            <h3>Servicio completo / diseño</h3>
+            <p class="section-sub" style="margin-top: 8px; margin-bottom: 0;">
+              Corte detallado, diseño o paquete completo de barbería.
+            </p>
+          </div>
+          <div class="price">Hasta $200 MXN</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SISTEMA DE AGENDAR CITA -->
+    <section id="agendar" class="container">
+      <h2 class="section-title">Agenda tu cita</h2>
+      <p class="section-sub">Selecciona el día (hoy o los próximos 5 días), la hora disponible y envía tu solicitud directo a WhatsApp.</p>
+
+      <div class="booking-box">
+        <div class="booking-step">
+          <span class="booking-label">1. Elige tu servicio</span>
+          <div class="services-select-grid" id="servicesGrid">
+            <button type="button" class="service-btn active" data-service="Corte clásico / degradado ($120 MXN)">Corte clásico / Fade • $120</button>
+            <button type="button" class="service-btn" data-service="Corte + arreglo de barba ($160 MXN)">Corte + barba • $160</button>
+            <button type="button" class="service-btn" data-service="Servicio completo / diseño ($200 MXN)">Servicio completo • $200</button>
+          </div>
+        </div>
+
+        <div class="booking-step">
+          <span class="booking-label">2. Selecciona el día</span>
+          <div class="days-grid" id="daysGrid"></div>
+        </div>
+
+        <div class="booking-step">
+          <span class="booking-label">3. Selecciona la hora (10:00 a. m. – 8:30 p. m.)</span>
+          <div class="times-grid" id="timesGrid"></div>
+        </div>
+
+        <div class="booking-step">
+          <label for="clientName" class="booking-label">4. Tu nombre (opcional)</label>
+          <input type="text" id="clientName" class="client-input" placeholder="Ej. Carlos Pérez" />
+        </div>
+
+        <div class="booking-summary" id="bookingSummary">
+          Selecciona un día y una hora para preparar tu mensaje de cita.
+        </div>
+
+        <button type="button" id="confirmBookingBtn" class="btn btn-primary" style="width: 100%;">
+          Confirmar cita por WhatsApp
+        </button>
+      </div>
+    </section>
+
+    <!-- TARJETA DE SELLOS -->
+    <section class="container">
+      <div class="loyalty-box">
+        <div style="max-width: 640px;">
+          <h2 class="section-title" style="margin-bottom: 6px;">Junta tus sellos y tu 7.ª visita es gratis</h2>
+          <p style="color: var(--muted);">
+            Cada corte suma un sello registrado por el local. Al completar 6 visitas, tu séptimo corte va por cuenta de la casa. (Ejemplo visual del progreso; el registro se activa por WhatsApp o en el negocio).
+          </p>
+          <div class="stamps-row" aria-label="Ejemplo de progreso de 7 visitas">
+            <span class="stamp">1</span>
+            <span class="stamp">2</span>
+            <span class="stamp">3</span>
+            <span class="stamp">4</span>
+            <span class="stamp">5</span>
+            <span class="stamp">6</span>
+            <span class="stamp free">7.ª GRATIS</span>
+          </div>
+        </div>
+        <a href="https://wa.me/5215540160398?text=Hola%2C%20quiero%20activar%20mi%20registro%20de%20sellos%20de%207%20visitas%20en%20Pepepelos%20Barber%20Shop" class="btn btn-primary" target="_blank" rel="noopener">Activar por WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- HORARIO Y UBICACIÓN -->
+    <section id="ubicacion" class="container">
+      <h2 class="section-title">Horario y ubicación</h2>
+      <p class="section-sub">Ven directo en horario de atención o aparta tu lugar antes de salir.</p>
+
+      <div class="info-grid">
+        <div class="card">
+          <div>
+            <h3>Horario de atención</h3>
+            <p style="color: var(--muted); margin-top: 8px;">
+              Abierto todos los días de <strong>10:00 a. m. a 9:00 p. m.</strong>
+            </p>
+          </div>
+          <p style="color: var(--muted); font-size: 0.88rem;">
+            *Última cita sugerida a las 8:30 p. m. para cerrar a las 9:00 p. m.
+          </p>
+        </div>
+
+        <div class="card">
+          <div>
+            <h3>¿Dónde nos encontramos?</h3>
+            <p style="color: var(--muted); margin-top: 8px;">
+              <strong>Dirección:</strong> Av. México 254, Las Fuentes, 57600 Cdad. Nezahualcóyotl, Méx.
+            </p>
+          </div>
+          <a href="https://maps.google.com/?q=Av.+M%C3%A9xico+254,+Las+Fuentes,+57600+Cdad.+Nezahualc%C3%B3yotl,+M%C3%A9x." class="btn btn-secondary" target="_blank" rel="noopener">Ver ubicación en mapa</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="container">
+      <div class="cta-banner">
+        <h2>¿Tienes alguna duda antes de venir?</h2>
+        <p>Escríbenos directo al <strong>55 4016 0398</strong> por WhatsApp y te respondemos al momento.</p>
+        <a href="https://wa.me/5215540160398?text=Hola%2C%20tengo%20una%20consulta%20sobre%20Pepepelos%20Barber%20Shop" class="btn btn-primary" target="_blank" rel="noopener">Mandar WhatsApp ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Pepepelos Barber Shop</strong> • Av. México 254, Las Fuentes, Cdad. Nezahualcóyotl, Méx. • 10:00 a. m. – 9:00 p. m. • Cortes de $120 a $200 MXN</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const WHATSAPP_NUMBER = "5215540160398";
+      const daysGrid = document.getElementById("daysGrid");
+      const timesGrid = document.getElementById("timesGrid");
+      const servicesGrid = document.getElementById("servicesGrid");
+      const clientNameInput = document.getElementById("clientName");
+      const bookingSummary = document.getElementById("bookingSummary");
+      const confirmBookingBtn = document.getElementById("confirmBookingBtn");
+
+      const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+      const fullDayNames = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+      const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
+
+      const timeSlots = [
+        { hour: 10, minute: 0, label: "10:00 a. m." },
+        { hour: 11, minute: 0, label: "11:00 a. m." },
+        { hour: 12, minute: 0, label: "12:00 p. m." },
+        { hour: 13, minute: 0, label: "1:00 p. m." },
+        { hour: 14, minute: 0, label: "2:00 p. m." },
+        { hour: 15, minute: 0, label: "3:00 p. m." },
+        { hour: 16, minute: 0, label: "4:00 p. m." },
+        { hour: 17, minute: 0, label: "5:00 p. m." },
+        { hour: 18, minute: 0, label: "6:00 p. m." },
+        { hour: 19, minute: 0, label: "7:00 p. m." },
+        { hour: 20, minute: 0, label: "8:00 p. m." },
+        { hour: 20, minute: 30, label: "8:30 p. m." }
+      ];
+
+      let selectedService = "Corte clásico / degradado ($120 MXN)";
+      let selectedDayIndex = 0;
+      let selectedTimeLabel = "";
+      const generatedDays = [];
+
+      const now = new Date();
+      for (let i = 0; i < 6; i++) {
+        const dateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+        const topLabel = i === 0 ? "Hoy" : i === 1 ? "Mañana" : dayNames[dateObj.getDay()];
+        const dateText = `${dateObj.getDate()} ${monthNames[dateObj.getMonth()]}`;
+        const fullLabel = `${i === 0 ? "Hoy (" + fullDayNames[dateObj.getDay()] + ")" : fullDayNames[dateObj.getDay()]} ${dateText}`;
+
+        generatedDays.push({
+          index: i,
+          dateObj,
+          topLabel,
+          dateText,
+          fullLabel
+        });
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "day-btn" + (i === 0 ? " active" : "");
+        btn.innerHTML = `<span>${topLabel}</span><strong>${dateText}</strong>`;
+        btn.addEventListener("click", () => {
+          selectedDayIndex = i;
+          document.querySelectorAll(".day-btn").forEach((el) => el.classList.remove("active"));
+          btn.classList.add("active");
+          renderTimes();
+        });
+        daysGrid.appendChild(btn);
+      }
+
+      servicesGrid.querySelectorAll(".service-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          servicesGrid.querySelectorAll(".service-btn").forEach((el) => el.classList.remove("active"));
+          btn.classList.add("active");
+          selectedService = btn.dataset.service;
+          updateSummary();
+        });
+      });
+
+      function renderTimes() {
+        timesGrid.innerHTML = "";
+        selectedTimeLabel = "";
+        const currentNow = new Date();
+        const isToday = selectedDayIndex === 0;
+        let firstAvailableBtn = null;
+
+        timeSlots.forEach((slot) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "time-btn";
+          btn.textContent = slot.label;
+
+          let isPast = false;
+          if (isToday) {
+            const slotDate = new Date(
+              currentNow.getFullYear(),
+              currentNow.getMonth(),
+              currentNow.getDate(),
+              slot.hour,
+              slot.minute
+            );
+            if (slotDate.getTime() <= currentNow.getTime() + 15 * 60 * 1000) {
+              isPast = true;
+            }
+          }
+
+          if (isPast) {
+            btn.disabled = true;
+          } else {
+            if (!firstAvailableBtn) {
+              firstAvailableBtn = btn;
+            }
+            btn.addEventListener("click", () => {
+              timesGrid.querySelectorAll(".time-btn").forEach((el) => el.classList.remove("active"));
+              btn.classList.add("active");
+              selectedTimeLabel = slot.label;
+              updateSummary();
+            });
+          }
+
+          timesGrid.appendChild(btn);
+        });
+
+        if (firstAvailableBtn) {
+          firstAvailableBtn.classList.add("active");
+          selectedTimeLabel = firstAvailableBtn.textContent;
+        }
+
+        updateSummary();
+      }
+
+      function updateSummary() {
+        const dayInfo = generatedDays[selectedDayIndex];
+        if (!selectedTimeLabel) {
+          bookingSummary.innerHTML = `Ya pasaron los horarios de <strong>${dayInfo.fullLabel}</strong>. Elige otro de los próximos 5 días.`;
+          return;
+        }
+        bookingSummary.innerHTML = `Cita seleccionada: <strong>${selectedService}</strong> • <strong>${dayInfo.fullLabel}</strong> a las <strong>${selectedTimeLabel}</strong>.`;
+      }
+
+      confirmBookingBtn.addEventListener("click", () => {
+        const dayInfo = generatedDays[selectedDayIndex];
+        if (!selectedTimeLabel) {
+          alert("Por favor elige un día con horarios disponibles.");
+          return;
+        }
+        const clientName = clientNameInput.value.trim();
+        const intro = clientName ? `Hola, soy ${clientName}. ` : "Hola, ";
+        const message = `${intro}quiero agendar una cita en Pepepelos Barber Shop:\n• Servicio: ${selectedService}\n• Día: ${dayInfo.fullLabel}\n• Hora: ${selectedTimeLabel}\n¿Tienen disponibilidad?`;
+
+        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank", "noopener");
+      });
+
+      renderTimes();
+    })();
+  </script>
+</body>
+</html>
